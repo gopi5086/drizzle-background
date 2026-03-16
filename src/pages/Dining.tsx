@@ -56,7 +56,6 @@ export default function Dining() {
               A Symphony <br />
               <span className="italic text-[#C5A861] drop-shadow-[0_0_20px_rgba(197,168,97,0.3)]">of Tastes</span>
             </h1>
-            <div className="w-20 h-px bg-[#C5A861] mx-auto mb-8" />
             <p className="text-white/70 max-w-2xl mx-auto text-lg md:text-xl font-light tracking-wide leading-relaxed">
               Experience the perfect blend of local tradition and global flair. At DrizzleDrop, every meal is an occasion to celebrate.
             </p>
@@ -175,7 +174,6 @@ export default function Dining() {
             <h2 className="font-serif text-3xl md:text-5xl font-light leading-relaxed italic mb-12">
               "Our chefs have carefully curated a diverse menu that highlights the finest elements of every cuisine. Treat your taste buds to new and exciting dishes every single day at DrizzleDrop Inn."
             </h2>
-            <div className="w-24 h-[1px] bg-[#C5A861]/40 mx-auto mb-10" />
             <p className="label-caps !text-[#C5A861]/70">The Master Chefs — DrizzleDrop Inn</p>
           </Reveal>
         </div>

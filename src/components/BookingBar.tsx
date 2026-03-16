@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -22,6 +22,13 @@ export default function BookingBar() {
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
     const [rooms, setRooms] = useState(1);
+    const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const totalGuests = adults + children;
 
@@ -121,8 +128,9 @@ export default function BookingBar() {
                                     defaultMonth={date?.from}
                                     selected={date}
                                     onSelect={setDate}
-                                    numberOfMonths={2}
+                                    numberOfMonths={isMobile ? 1 : 2}
                                     disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                                    className="bg-white rounded-xl"
                                 />
                             </PopoverContent>
                         </Popover>

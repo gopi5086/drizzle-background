@@ -166,7 +166,7 @@ export default function HeroSection() {
       <ShimmerParticles />
 
       {/* Main Content Area */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 pt-20">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4 pt-20">
 
         {/* Animated Badge */}
         <AnimatePresence mode="wait">
@@ -194,7 +194,7 @@ export default function HeroSection() {
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85] text-white"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[1] sm:leading-[0.85] text-white"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Welcome to
@@ -210,7 +210,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2 }}
-          className="text-lg md:text-2xl text-white/60 font-light tracking-widest max-w-3xl mb-12"
+          className="text-base sm:text-lg md:text-2xl text-white/60 font-light tracking-[0.1em] sm:tracking-widest max-w-3xl mb-12"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           Curated Hospitality In The Heart Of Chennai & Ooty
@@ -233,15 +233,6 @@ export default function HeroSection() {
         current={currentSlide}
         onSelect={goToSlide}
       />
-
-      {/* Decorative scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
-      >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#C5A861] to-transparent" />
-      </motion.div>
 
     </section>
   );

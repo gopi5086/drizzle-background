@@ -21,18 +21,20 @@ const queryClient = new QueryClient();
 
 // Helper component to show the global booking modal
 const GlobalBookingModal = () => {
-  const { isModalOpen, closeBooking } = useBooking();
+  const { isModalOpen, closeBooking, initialData } = useBooking();
+
   return (
     <BookingModal
       isOpen={isModalOpen}
       onClose={closeBooking}
       bookingData={{
-        location: "DrizzleDrop Inn, Chennai",
-        adults: 1,
+        location: initialData?.location || "DrizzleDrop Inn, Chennai",
+        adults: Number(initialData?.guests) || 1,
         children: 0,
         rooms: 1,
-        checkIn: new Date(),
-        checkOut: new Date(new Date().setDate(new Date().getDate() + 1))
+        checkIn: initialData?.checkIn || new Date(),
+        checkOut: initialData?.checkOut || new Date(new Date().setDate(new Date().getDate() + 1)),
+        roomType: initialData?.roomType || "Deluxe Room"
       }}
     />
   );

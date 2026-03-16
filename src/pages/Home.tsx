@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, MapPin, Wifi, Car, Shield, MessageCircle, Phone, Mail } from "lucide-react";
 import chennaiImg from "@/asset_images/WhatsApp Image 2026-03-16 at 3.46.33 PM (7).jpeg";
@@ -36,6 +36,8 @@ const blogPosts = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <HeroSection />
@@ -86,10 +88,7 @@ export default function Home() {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="group relative overflow-hidden rounded-3xl border border-border/40 hover:border-[#C5A861]/30 transition-all duration-500 cursor-pointer bg-white shadow-sm hover:shadow-[0_40px_80px_rgba(0,0,0,0.06)]"
-                onClick={() => {
-                  const el = document.getElementById('location');
-                  el?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => navigate('/rooms')}
               >
                 <div className="relative h-[400px] overflow-hidden">
                   <img src={chennaiImg} alt="DrizzleDrop Chennai" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]" />

@@ -14,6 +14,7 @@ export interface BookingData {
     adults: number;
     children: number;
     rooms: number;
+    roomType?: string;
 }
 
 interface BookingModalProps {
@@ -130,7 +131,7 @@ export default function BookingModal({ isOpen, onClose, bookingData }: BookingMo
                                 </div>
                                 <div className="space-y-2 md:col-span-2">
                                     <Label htmlFor="roomType">Room Type *</Label>
-                                    <Select name="roomType" required defaultValue="Deluxe Room">
+                                    <Select name="roomType" required defaultValue={bookingData.roomType || "Deluxe Room"}>
                                         <SelectTrigger className="bg-background">
                                             <SelectValue placeholder="Select Room Type" />
                                         </SelectTrigger>
