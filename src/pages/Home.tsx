@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, MapPin, Wifi, Car, Shield, MessageCircle, Phone, Mail } from "lucide-react";
+import AdPopup from "@/components/AdPopup";
 import chennaiImg from "@/asset_images/WhatsApp Image 2026-03-16 at 3.46.33 PM (7).jpeg";
 import ootyImg from "@/asset_images/WhatsApp Image 2026-03-16 at 3.46.33 PM (23).jpeg";
 import SectionHeading from "@/components/SectionHeading";
@@ -40,6 +41,7 @@ export default function Home() {
 
   return (
     <>
+      <AdPopup />
       <HeroSection />
 
       {/* About */}

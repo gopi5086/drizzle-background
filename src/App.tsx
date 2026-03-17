@@ -12,8 +12,12 @@ import Dining from "@/pages/Dining";
 import Deals from "@/pages/Deals";
 import Overview from "@/pages/Overview";
 import NotFound from "@/pages/NotFound";
+import AdminLogin from "@/pages/AdminLogin";
+import AdminDashboard from "@/pages/AdminDashboard";
+import AdminRoute from "@/components/AdminRoute";
 import SocialFloatingIcons from "@/components/SocialFloatingIcons";
 import { BookingProvider } from "@/context/BookingContext";
+import { AuthProvider } from "@/context/AuthContext";
 import BookingModal from "@/components/BookingModal";
 import { useBooking } from "@/context/BookingContext";
 
@@ -45,24 +49,36 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BookingProvider>
-        <BrowserRouter>
-          <Layout>
+      <AuthProvider>
+        <BookingProvider>
+          <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/facilities" element={<Facilities />} />
-              <Route path="/rooms" element={<Rooms />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/dining" element={<Dining />} />
-              <Route path="/deals" element={<Deals />} />
-              <Route path="/overview" element={<Overview />} />
-              <Route path="*" element={<NotFound />} />
+              {/* Admin routes - no Layout (no Navbar/Footer) */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                }
+              />
+
+              {/* Public routes - with Layout */}
+              <Route path="/" element={<Layout><Home /></Layout>} />
+              <Route path="/facilities" element={<Layout><Facilities /></Layout>} />
+              <Route path="/rooms" element={<Layout><Rooms /></Layout>} />
+              <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
+              <Route path="/dining" element={<Layout><Dining /></Layout>} />
+              <Route path="/deals" element={<Layout><Deals /></Layout>} />
+              <Route path="/overview" element={<Layout><Overview /></Layout>} />
+              <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
-          </Layout>
-          <SocialFloatingIcons />
-          <GlobalBookingModal />
-        </BrowserRouter>
-      </BookingProvider>
+            <SocialFloatingIcons />
+            <GlobalBookingModal />
+          </BrowserRouter>
+        </BookingProvider>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

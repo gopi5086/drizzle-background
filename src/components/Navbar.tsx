@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle } from "lucide-react";
 import driLogo from "../assets/drilogo.png";
 import { useBooking } from "@/context/BookingContext";
+import { useAuth } from "@/context/AuthContext";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -25,6 +26,8 @@ const navLinks = [
 
 export default function Navbar() {
   const { openBooking } = useBooking();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -134,16 +137,27 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right side: Book Now + mobile toggle */}
+        {/* Right side: Book Now + Admin Icon + mobile toggle */}
         <div className="flex items-center gap-3">
           <button
-            onClick={openBooking}
+            onClick={() => openBooking()}
             className={`hidden sm:inline-flex items-center px-6 py-2.5 text-sm font-bold tracking-widest uppercase transition-all duration-300 rounded-md hover:scale-105 active:scale-95 ${isTransparent
               ? "bg-[#C5A861] hover:bg-[#b0944f] text-white shadow-lg shadow-black/20"
               : "bg-[#2E6B8A] hover:bg-[#255a75] text-white shadow-md"
               }`}
           >
             Book Now
+          </button>
+          <button
+            onClick={() => navigate(isAuthenticated ? "/admin/dashboard" : "/admin/login")}
+            className={`hidden sm:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+              isTransparent
+                ? "bg-white/15 hover:bg-white/25 text-white backdrop-blur-sm"
+                : "bg-[#2E6B8A]/10 hover:bg-[#2E6B8A]/20 text-[#2E6B8A]"
+            }`}
+            title="Admin Panel"
+          >
+            <UserCircle className="w-5 h-5" />
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
